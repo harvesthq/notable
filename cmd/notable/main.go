@@ -29,7 +29,10 @@ func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request)
 		responseWriter.Header().Set("Content-Type", "application/json")
 
 		if request.Method == "POST" {
-			notable.Record(request.Form.Get("user_name"), request.Form.Get("trigger_word"), request.Form.Get("text"))
+			notable.Record(request.Form.Get("user_id"),
+				request.Form.Get("trigger_word"),
+				request.Form.Get("text"),
+				os.Getenv("SLACK_API_TOKEN"))
 			response, err = json.Marshal(OKResponse{"I got this."})
 		} else {
 			response, err = json.Marshal(SummaryResponse{notable.Notes()})
@@ -56,7 +59,7 @@ func clearHandler(responseWriter http.ResponseWriter, request *http.Request) {
 
 func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	if request.Method == "POST" {
-		notable.SendEmail(os.Getenv("API_KEY"))
+		notable.SendEmail(os.Getenv("MANDRILL_API_KEY"))
 	} else {
 		responseWriter.Header().Set("Content-Type", "text/html")
 		responseWriter.Write([]byte(notable.Email()))

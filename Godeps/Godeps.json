@@ -9,6 +9,15 @@
 			"ImportPath": "github.com/keighl/mandrill",
 			"Comment": "1.0.0-14-g5d7133f",
 			"Rev": "5d7133fb578a9504f8ab549737c993422f65a000"
+		},
+		{
+			"ImportPath": "github.com/nlopes/slack",
+			"Comment": "v0.0.1-45-g0c92f27",
+			"Rev": "0c92f27523cc9e3ed470d628f1dd6839b14f88fe"
+		},
+		{
+			"ImportPath": "golang.org/x/net/websocket",
+			"Rev": "66f0418ca41253f8d1a024eb9754e9441a8e79b9"
 		}
 	]
 }

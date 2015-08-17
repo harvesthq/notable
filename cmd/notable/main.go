@@ -1,9 +1,9 @@
 package main
 
-import notable "github.com/harvesthq/notable"
-
 import (
 	"encoding/json"
+	"fmt"
+	notable "github.com/harvesthq/notable"
 	"log"
 	"net/http"
 	"os"
@@ -14,34 +14,52 @@ type OKResponse struct {
 }
 
 type SummaryResponse struct {
-	Notes []string `json:"notes"`
+	Notes []notable.Note `json:"notes"`
 }
 
 func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request) {
-	var response []byte
-	var err error
+	request.ParseForm()
+	token := "13XIbBjtLeimhPIY36DWZvdR"
+	incomingToken := request.Form.Get("token")
 
-	responseWriter.Header().Set("Content-Type", "application/json")
+	if incomingToken == token {
+		var response []byte
+		var err error
 
-	if request.Method == "POST" {
-		request.ParseForm()
-		notable.Note(request.Form.Get("user_name"), request.Form.Get("text"))
-		response, err = json.Marshal(OKResponse{"I got this."})
+		responseWriter.Header().Set("Content-Type", "application/json")
+
+		if request.Method == "POST" {
+			notable.Record(request.Form.Get("user_name"), request.Form.Get("trigger_word"), request.Form.Get("text"))
+			response, err = json.Marshal(OKResponse{"I got this."})
+		} else {
+			response, err = json.Marshal(SummaryResponse{notable.Notes()})
+		}
+
+		if err != nil {
+			http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		responseWriter.Write(response)
 	} else {
-		response, err = json.Marshal(SummaryResponse{notable.Summary()})
-	}
-
-	if err != nil {
-		http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
+		fmt.Printf("Invalid token received: %s\n", incomingToken)
+		http.Error(responseWriter, "Invalid token", http.StatusForbidden)
 		return
 	}
-
-	responseWriter.Write(response)
 }
 
 func clearHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	if request.Method == "POST" {
 		notable.Reset()
+	}
+}
+
+func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
+	if request.Method == "POST" {
+		notable.EmailSubscribers(os.Getenv("API_KEY"))
+	} else {
+		responseWriter.Header().Set("Content-Type", "text/html")
+		responseWriter.Write([]byte(notable.Email()))
 	}
 }
 
@@ -53,7 +71,8 @@ func main() {
 	}
 
 	notable.Reset()
-	http.HandleFunc("/notes", getAndSetHandler)
-	http.HandleFunc("/notes/clear", clearHandler)
+	http.HandleFunc("/email", emailHandler)
+	http.HandleFunc("/clear", clearHandler)
+	http.HandleFunc("/", getAndSetHandler)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

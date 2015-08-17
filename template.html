@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Co-Op #done Report</title>
+    <style type="text/css" media="screen">
+      img {display:block;}
+    </style>
+  </head>
+  <body style="padding:0; margin:0;font-family:Helvetica,Arial,sans-serif;font-size:16px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="center" style="padding:0 30px 40px;">
+          <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="padding:50px 0 30px;">
+                <h1 style="font-size:1.5em; margin-bottom:5px;">
+                  Notable Daily Digest
+                </h1>
+            </tr>
+            <tr>
+              <td style="background:#fff3dd; font-size:.875em; height:35px; font-weight:bold; line-height:35px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;">
+                Announcements from Today
+              </td>
+            </tr>
+            <tr>
+              <td><table width="580" border="0" cellspacing="0" cellpadding="0" style="margin:10px 0 20px;">
+                {{range .}}
+                  <tr>
+                    <td width="30" style="border-bottom:1px solid #d6d6d6;padding:9px 0 6px;" valign="top">
+                      <img src="//www.gravatar.com/avatar/{{gravatarHash .}}?size=25"/>
+                    </td>
+                    <td width="65" style="font-size:11px;line-height:11px;font-weight:bold; border-bottom:1px solid #D6D6D6; padding:16px 0 0;" valign="top">
+                      {{.Author}}
+                    </td>
+                    <td style="font-size:15px;border-bottom:1px solid #d6d6d6;padding:10px 0 10px 5px;">
+                      <span style="line-height:17px;">
+                        #{{.Trigger}} {{.Text}}
+                      </span>
+                    </td>
+                  </tr>
+                 {{end}}
+              </table></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

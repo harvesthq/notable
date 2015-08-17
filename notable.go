@@ -22,6 +22,7 @@ type Note struct {
 var notes []Note
 
 func Record(author string, trigger string, text string) {
+	text = strings.TrimSpace(strings.TrimPrefix(text, trigger))
 	notes = append(notes, Note{author, trigger, text, time.Now()})
 }
 
@@ -50,7 +51,7 @@ func Email() string {
 	return html.String()
 }
 
-func EmailSubscribers(apiKey string) {
+func SendEmail(apiKey string) {
 	client := mandrill.ClientWithKey(apiKey)
 
 	message := &mandrill.Message{}

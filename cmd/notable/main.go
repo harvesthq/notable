@@ -56,7 +56,7 @@ func clearHandler(responseWriter http.ResponseWriter, request *http.Request) {
 
 func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	if request.Method == "POST" {
-		notable.EmailSubscribers(os.Getenv("API_KEY"))
+		notable.SendEmail(os.Getenv("API_KEY"))
 	} else {
 		responseWriter.Header().Set("Content-Type", "text/html")
 		responseWriter.Write([]byte(notable.Email()))

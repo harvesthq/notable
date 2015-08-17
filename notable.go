@@ -2,9 +2,19 @@ package notable
 
 import (
 	"fmt"
-	"net/http"
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Request received: %s %s", r.Method, r.URL.Path)
+var notes []string
+
+func Note(author string, note string) {
+	fmt.Printf("author=%s note=%s\n", author, note)
+	notes = append(notes, note)
+}
+
+func Summary() []string {
+	return notes
+}
+
+func Reset() {
+	notes = make([]string, 0)
 }

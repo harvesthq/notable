@@ -24,6 +24,7 @@ func SendEmail(apiKey string) {
 
 	message := &mandrill.Message{}
 	message.AddRecipient("jason@getharvest.com", "Jason Dew", "to")
+	message.AddRecipient("danny@getharvest.com", "Danny Wen", "to")
 	message.FromEmail = "notable@getharvest.com"
 	message.FromName = "Notable"
 	message.Subject = "Daily Notable Digest"

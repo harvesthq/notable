@@ -20,10 +20,11 @@ type SummaryResponse struct {
 
 func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	request.ParseForm()
-	token := "13XIbBjtLeimhPIY36DWZvdR"
+	webHookToken := "13XIbBjtLeimhPIY36DWZvdR"
+	slashCommandToken := "jINvK9gvlwQafaCR3yWlksRW"
 	incomingToken := request.Form.Get("token")
 
-	if incomingToken == token {
+	if incomingToken == webHookToken || incomingToken == slashCommandToken {
 		var response []byte
 		var err error
 

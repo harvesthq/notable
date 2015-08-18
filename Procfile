@@ -1,1 +1,1 @@
-web: notable
+web: notable_server

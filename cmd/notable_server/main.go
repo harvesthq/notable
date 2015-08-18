@@ -10,6 +10,9 @@ import (
 	"os"
 )
 
+const webHookToken = "13XIbBjtLeimhPIY36DWZvdR"
+const slashCommandToken = "jINvK9gvlwQafaCR3yWlksRW"
+
 type OKResponse struct {
 	Text string `json:"text"`
 }
@@ -20,31 +23,28 @@ type SummaryResponse struct {
 
 func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	request.ParseForm()
-	webHookToken := "13XIbBjtLeimhPIY36DWZvdR"
-	slashCommandToken := "jINvK9gvlwQafaCR3yWlksRW"
-	incomingToken := request.Form.Get("token")
+	token := request.Form.Get("token")
 
-	if incomingToken == webHookToken || incomingToken == slashCommandToken {
-		var response []byte
+	if validToken(token) {
 		var err error
-
-		responseWriter.Header().Set("Content-Type", "application/json")
 
 		if request.Method == "POST" {
 			recordNote(request.Form)
-			response, err = json.Marshal(OKResponse{"I got this."})
+			if viaSlashCommand(token) {
+				responseWriter.Write([]byte("Got it!"))
+			} else {
+				respondWithJSON(responseWriter, OKResponse{"Got it!"})
+			}
 		} else {
-			response, err = json.Marshal(SummaryResponse{notable.Notes()})
+			respondWithJSON(responseWriter, SummaryResponse{notable.Notes()})
 		}
 
 		if err != nil {
 			http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
-		responseWriter.Write(response)
 	} else {
-		fmt.Printf("Invalid token received: %s\n", incomingToken)
+		fmt.Printf("Invalid token received: %s\n", token)
 		http.Error(responseWriter, "Invalid token", http.StatusForbidden)
 		return
 	}
@@ -69,6 +69,24 @@ func recordNote(form url.Values) {
 	slackToken := os.Getenv("SLACK_API_TOKEN")
 
 	notable.Record(user_id, category, text, channel, slackToken)
+}
+
+func validToken(token string) bool {
+	return token == webHookToken || token == slashCommandToken
+}
+
+func viaSlashCommand(token string) bool {
+	return token == slashCommandToken
+}
+
+func respondWithJSON(responseWriter http.ResponseWriter, response interface{}) {
+	responseJSON, err := json.Marshal(response)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	responseWriter.Header().Set("Content-Type", "application/json")
+	responseWriter.Write(responseJSON)
 }
 
 func main() {

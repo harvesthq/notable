@@ -6,6 +6,7 @@ import (
 	notable "github.com/harvesthq/notable"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 )
 
@@ -29,10 +30,7 @@ func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request)
 		responseWriter.Header().Set("Content-Type", "application/json")
 
 		if request.Method == "POST" {
-			notable.Record(request.Form.Get("user_id"),
-				request.Form.Get("trigger_word"),
-				request.Form.Get("text"),
-				os.Getenv("SLACK_API_TOKEN"))
+			recordNote(request.Form)
 			response, err = json.Marshal(OKResponse{"I got this."})
 		} else {
 			response, err = json.Marshal(SummaryResponse{notable.Notes()})
@@ -60,6 +58,16 @@ func clearHandler(responseWriter http.ResponseWriter, request *http.Request) {
 func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	responseWriter.Header().Set("Content-Type", "text/html")
 	responseWriter.Write([]byte(notable.Email()))
+}
+
+func recordNote(form url.Values) {
+	user_id := form.Get("user_id")
+	category := form.Get("trigger_word")
+	text := form.Get("text")
+	channel := form.Get("channel_name")
+	slackToken := os.Getenv("SLACK_API_TOKEN")
+
+	notable.Record(user_id, category, text, channel, slackToken)
 }
 
 func main() {

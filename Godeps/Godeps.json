@@ -6,6 +6,14 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/garyburd/redigo/internal",
+			"Rev": "9d4db5d1dbeff473d50e1bb82f5405c8cca0f0ac"
+		},
+		{
+			"ImportPath": "github.com/garyburd/redigo/redis",
+			"Rev": "9d4db5d1dbeff473d50e1bb82f5405c8cca0f0ac"
+		},
+		{
 			"ImportPath": "github.com/keighl/mandrill",
 			"Comment": "1.0.0-14-g5d7133f",
 			"Rev": "5d7133fb578a9504f8ab549737c993422f65a000"
@@ -14,6 +22,10 @@
 			"ImportPath": "github.com/nlopes/slack",
 			"Comment": "v0.0.1-45-g0c92f27",
 			"Rev": "0c92f27523cc9e3ed470d628f1dd6839b14f88fe"
+		},
+		{
+			"ImportPath": "github.com/soveran/redisurl",
+			"Rev": "ac42ec99510b5f21d11560d316adcc5bc41f0915"
 		},
 		{
 			"ImportPath": "golang.org/x/net/websocket",

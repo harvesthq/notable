@@ -58,12 +58,8 @@ func clearHandler(responseWriter http.ResponseWriter, request *http.Request) {
 }
 
 func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
-	if request.Method == "POST" {
-		notable.SendEmail(os.Getenv("MANDRILL_API_KEY"))
-	} else {
-		responseWriter.Header().Set("Content-Type", "text/html")
-		responseWriter.Write([]byte(notable.Email()))
-	}
+	responseWriter.Header().Set("Content-Type", "text/html")
+	responseWriter.Write([]byte(notable.Email()))
 }
 
 func main() {
@@ -73,7 +69,6 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
-	notable.Reset()
 	http.HandleFunc("/email", emailHandler)
 	http.HandleFunc("/clear", clearHandler)
 	http.HandleFunc("/", getAndSetHandler)

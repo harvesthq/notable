@@ -1,55 +1,123 @@
-<html>
+<!DOCTYPE html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Co-Op #done Report</title>
-    <style type="text/css" media="screen">
-      img {display:block;}
-    </style>
+    <meta name="viewport" content="initial-scale=1, user-scalable=no">
+    <title>Slack #Hashtag Digest</title>
   </head>
-  <body style="padding:0; margin:0;font-family:Helvetica,Arial,sans-serif;font-size:16px;">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td align="center" style="padding:0 30px 40px;">
-          <table width="580" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td style="padding:50px 0 30px;">
-                <h1 style="font-size:1.5em; margin-bottom:5px;">
-                  Notable Daily Digest
-                </h1>
-            </tr>
 
-            {{range $category, $notes := .}}
+  <body>
+    <center>
+      <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable">
+        <tr>
+          <td align="left" valign="top" id="bodyCell">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" id="templateContainer">
 
               <tr>
-                <td style="background:#fff3dd; font-size:.875em; height:35px; font-weight:bold; line-height:35px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;">
-                  #{{$category}} Announcements
+                <td align="left" valign="top">
+                  <h1>#Hashtag Digest for DATE</h1>
                 </td>
               </tr>
-              <tr>
-                <td><table width="580" border="0" cellspacing="0" cellpadding="0" style="margin:10px 0 20px;">
-                  {{range $notes}}
-                    <tr>
-                      <td width="30" style="border-bottom:1px solid #d6d6d6;padding:9px 0 6px;" valign="top">
-                        <img src="{{.AvatarURL}}"/>
-                      </td>
-                      <td width="65" style="font-size:11px;line-height:11px;font-weight:bold; border-bottom:1px solid #D6D6D6; padding:16px 0 0;" valign="top">
-                        {{.Author}}
-                      </td>
-                      <td style="font-size:15px;border-bottom:1px solid #d6d6d6;padding:10px 0 10px 5px;">
-                        <span style="line-height:17px;">
+
+              {{range $category, $notes := .}}
+
+                <tr>
+                  <td align="left" valign="top" class="headerContent">
+                    <div>#{{$category}} Announcements</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table border="0" cellspacing="0" cellpadding="0" class="bodyContent">
+                    {{range $notes}}
+                      <tr>
+                        <td align="left" valign="top" width="40">
+                          <img src="{{.AvatarURL}}" />
+                        </td>
+                        <td align="left" valign="top" width="120">
+                          <strong>{{.Author}}</strong>
+                        </td>
+                        <td align="left" valign="top">
                           {{.Text}}
-                        </span>
-                      </td>
-                    </tr>
-                   {{end}}
-                </table></td>
-              </tr>
+                        </td>
+                      </tr>
+                     {{end}}
+                    </table>
+                  </td>
+                </tr>
 
-            {{end}}
+              {{end}}
 
-          </table>
-        </td>
-      </tr>
-    </table>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+
+    <style type="text/css">
+      body{
+        margin:0;
+        min-width:100% !important;
+        padding:0;
+        width:100% !important;
+      }
+      #bodyTable{
+        margin:auto;
+        padding:0;
+        width:600px;
+      }
+      #bodyTable table{
+        width:100%;
+      }
+      body, #bodyTable{
+        background-color:#fff;
+        color:#444;
+        font-family:Helvetica,Arial,sans-serif;
+        font-size:15px;
+        line-height:150%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      table{
+        border-collapse:separate !important;
+        margin:0;
+        padding:0;
+      }
+      h1{
+        color:#333;
+        display:block;
+        font-family:Helvetica,Arial,sans-serif;
+        font-size:24px;
+        font-weight:bold;
+        line-height:125%;
+        margin:1em 0 0 0;
+        padding:0;
+      }
+      .headerContent div{
+        background:#74c4a1;
+        border-radius:4px;
+        color:#fff;
+        font-weight:bold;
+        margin-top:2em;
+        padding:10px 15px 10px 15px;
+      }
+      .bodyContent td{
+        border-bottom:1px solid #ddd;
+        padding:1em 0 1em 0;
+      }
+      .bodyContent img{
+        border:0;
+        border-radius:3px;
+        outline:none;
+      }
+      @media only screen and (max-width: 600px) /*and (max-device-width: 600px)*/{
+        body{
+          -webkit-text-size-adjust:none !important;
+          -ms-text-size-adjust:none !important;
+        }
+        #bodyTable{
+          width:95% !important;
+        }
+      }
+    </style>
   </body>
 </html>

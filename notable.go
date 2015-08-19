@@ -56,10 +56,10 @@ func extractHashtag(text string) string {
 }
 
 func notifyRoom(api *slack.Client, note Note) {
-	avatar := slack.Attachment{AuthorName: note.Author, AuthorIcon: note.AvatarURL}
 	var attachments []slack.Attachment
-	params := slack.PostMessageParameters{Attachments: append(attachments, avatar)}
-	_, _, err := api.PostMessage("#testbotroom", note.Text, params)
+	avatar := slack.Attachment{Text: note.Text}
+	params := slack.PostMessageParameters{IconURL: note.AvatarURL, Attachments: append(attachments, avatar)}
+	_, _, err := api.PostMessage("#testbotroom", "", params)
 	check(err)
 }
 

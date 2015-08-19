@@ -57,7 +57,8 @@ func extractHashtag(text string) string {
 
 func notifyRoom(api *slack.Client, note Note) {
 	params := slack.PostMessageParameters{Username: note.Category}
-	_, _, err := api.PostMessage("#testbotroom", note.Text, params)
+	text := fmt.Sprintf("%s: %s", note.Author, note.Text)
+	_, _, err := api.PostMessage("#testbotroom", text, params)
 	check(err)
 }
 

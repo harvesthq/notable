@@ -13,7 +13,7 @@ func Email() string {
 	notesTemplate, err := template.ParseFiles("template.html")
 	check(err)
 
-	err = notesTemplate.Execute(&html, Notes())
+	err = notesTemplate.Execute(&html, notesByCategory())
 	check(err)
 
 	return html.String()
@@ -34,4 +34,21 @@ func SendEmail(apiKey string) {
 	if err != nil {
 		log.Print(err)
 	}
+}
+
+func notesByCategory() map[string][]Note {
+	var category string
+	grouped := make(map[string][]Note)
+
+	for _, note := range Notes() {
+		category = note.Category
+
+		if len(grouped[category]) == 0 {
+			grouped[category] = make([]Note, 1)
+		}
+
+		grouped[category] = append(grouped[category], note)
+	}
+
+	return grouped
 }

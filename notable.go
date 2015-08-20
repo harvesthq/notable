@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+var targetRoom string = "co-op"
+
 func Record(authorID string, category string, text string, channel string, slackToken string) {
 	var authorName, avatarURL string
 
@@ -29,7 +31,7 @@ func Record(authorID string, category string, text string, channel string, slack
 
 	AddNote(note)
 
-	if channel != "testbotroom" {
+	if channel != targetRoom {
 		notifyRoom(api, note)
 	}
 }
@@ -58,8 +60,9 @@ func extractHashtag(text string) string {
 func notifyRoom(api *slack.Client, note Note) {
 	var attachments []slack.Attachment
 	avatar := slack.Attachment{Text: note.Text}
-	params := slack.PostMessageParameters{Username: note.Category, IconURL: note.AvatarURL, Attachments: append(attachments, avatar)}
-	_, _, err := api.PostMessage("#testbotroom", "", params)
+	heading := fmt.Sprintf("%s Announcement from %s", strings.Title(note.Category), note.Author)
+	params := slack.PostMessageParameters{Username: heading, IconURL: note.AvatarURL, Attachments: append(attachments, avatar)}
+	_, _, err := api.PostMessage(fmt.Sprintf("#%s", targetRoom), "", params)
 	check(err)
 }
 

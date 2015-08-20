@@ -5,7 +5,13 @@ import (
 	mandrill "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/keighl/mandrill"
 	"log"
 	"text/template"
+	"time"
 )
+
+type Variables struct {
+	Today           string
+	NotesByCategory map[string][]Note
+}
 
 func Email() string {
 	var html bytes.Buffer
@@ -13,7 +19,9 @@ func Email() string {
 	notesTemplate, err := template.ParseFiles("template.html")
 	check(err)
 
-	err = notesTemplate.Execute(&html, notesByCategory())
+	today := time.Now().Format("Monday January 2, 2006")
+	variables := Variables{today, notesByCategory()}
+	err = notesTemplate.Execute(&html, variables)
 	check(err)
 
 	return html.String()
@@ -38,13 +46,13 @@ func SendEmail(apiKey string) {
 
 func notesByCategory() map[string][]Note {
 	var category string
-	grouped := make(map[string][]Note)
+	grouped := make(map[string][]Note, 0)
 
 	for _, note := range Notes() {
 		category = note.Category
 
 		if len(grouped[category]) == 0 {
-			grouped[category] = make([]Note, 1)
+			grouped[category] = make([]Note, 0)
 		}
 
 		grouped[category] = append(grouped[category], note)

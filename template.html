@@ -14,15 +14,15 @@
 
               <tr>
                 <td align="left" valign="top">
-                  <h1>#Hashtag Digest for DATE</h1>
+                  <h1>#Hashtag Digest for {{.Today}}</h1>
                 </td>
               </tr>
 
-              {{range $category, $notes := .}}
+              {{range $category, $notes := .NotesByCategory}}
 
                 <tr>
                   <td align="left" valign="top" class="headerContent">
-                    <div>#{{$category}} Announcements</div>
+                    <div>#{{$category}} &mdash; {{len $notes}} Announcements</div>
                   </td>
                 </tr>
                 <tr>

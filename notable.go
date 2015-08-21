@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-var targetRoom string = "general"
+var targetRoom string = "co-op"
 
 func Record(authorID string, category string, text string, channel string, slackToken string) {
 	var authorName, avatarURL string
@@ -19,7 +19,7 @@ func Record(authorID string, category string, text string, channel string, slack
 
 	if err == nil {
 		authorName = user.Profile.RealName
-		avatarURL = user.Profile.Image24
+		avatarURL = user.Profile.Image48
 	} else {
 		fmt.Printf("Error getting author information from Slack: %s\n", err)
 		authorName = authorID

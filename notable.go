@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-var targetRoom string = "co-op"
+var targetRoom string = "general"
 
 func Record(authorID string, category string, text string, channel string, slackToken string) {
 	var authorName, avatarURL string

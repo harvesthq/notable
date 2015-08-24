@@ -20,14 +20,9 @@ type CategoryNotes struct {
 }
 
 func (categoryNotes *CategoryNotes) Title() string {
-	size := len(categoryNotes.Notes)
-	announcements := "Announcement"
-
-	if size > 1 {
-		announcements = announcements + "s"
-	}
-
-	return fmt.Sprintf("#%s &mdash; %d %s", categoryNotes.Name, size, announcements)
+	count := len(categoryNotes.Notes)
+	announcements := pluralize(count, "Announcement")
+	return fmt.Sprintf("#%s &mdash; %d %s", categoryNotes.Name, count, announcements)
 }
 
 func Email() string {
@@ -46,12 +41,13 @@ func Email() string {
 
 func SendEmail(apiKey string) {
 	client := mandrill.ClientWithKey(apiKey)
+	subject := pluralize(len(Notes()), "Notable Announcement")
 
 	message := &mandrill.Message{}
 	message.AddRecipient("harvest.team@getharvest.com", "Harvest Team", "to")
 	message.FromEmail = "notable@getharvest.com"
-	message.FromName = "Notable"
-	message.Subject = "Daily Notable Digest"
+	message.FromName = "Harvest Notables"
+	message.Subject = subject
 	message.HTML = Email()
 
 	_, err := client.MessagesSend(message)
@@ -81,4 +77,14 @@ func notesByCategory() []CategoryNotes {
 	}
 
 	return categoryNotes
+}
+
+func pluralize(count int, singularForm string) string {
+	pluralForm := fmt.Sprintf("%s%s", singularForm, "s")
+
+	if count == 1 {
+		return fmt.Sprintf("1 %s", singularForm)
+	} else {
+		return fmt.Sprintf("%d %s", count, pluralForm)
+	}
 }

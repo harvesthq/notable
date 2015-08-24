@@ -2,6 +2,7 @@ package notable
 
 import (
 	"bytes"
+	"fmt"
 	mandrill "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/keighl/mandrill"
 	"log"
 	"text/template"
@@ -10,7 +11,23 @@ import (
 
 type Variables struct {
 	Today           string
-	NotesByCategory map[string][]Note
+	NotesByCategory []CategoryNotes
+}
+
+type CategoryNotes struct {
+	Name  string
+	Notes []Note
+}
+
+func (categoryNotes *CategoryNotes) Title() string {
+	size := len(categoryNotes.Notes)
+	announcements := "Announcement"
+
+	if size > 1 {
+		announcements = announcements + "s"
+	}
+
+	return fmt.Sprintf("#%s &mdash; %d %s", categoryNotes.Name, size, announcements)
 }
 
 func Email() string {
@@ -31,8 +48,7 @@ func SendEmail(apiKey string) {
 	client := mandrill.ClientWithKey(apiKey)
 
 	message := &mandrill.Message{}
-	message.AddRecipient("jason@getharvest.com", "Jason Dew", "to")
-	message.AddRecipient("danny@getharvest.com", "Danny Wen", "to")
+	message.AddRecipient("harvest.team@getharvest.com", "Harvest Team", "to")
 	message.FromEmail = "notable@getharvest.com"
 	message.FromName = "Notable"
 	message.Subject = "Daily Notable Digest"
@@ -44,19 +60,25 @@ func SendEmail(apiKey string) {
 	}
 }
 
-func notesByCategory() map[string][]Note {
+func notesByCategory() []CategoryNotes {
 	var category string
-	grouped := make(map[string][]Note, 0)
+	grouped := make(map[string]*CategoryNotes, 0)
 
 	for _, note := range Notes() {
 		category = note.Category
 
-		if len(grouped[category]) == 0 {
-			grouped[category] = make([]Note, 0)
+		if _, found := grouped[category]; !found {
+			grouped[category] = &CategoryNotes{Name: category, Notes: make([]Note, 0)}
 		}
 
-		grouped[category] = append(grouped[category], note)
+		grouped[category].Notes = append(grouped[category].Notes, note)
 	}
 
-	return grouped
+	categoryNotes := make([]CategoryNotes, 0)
+
+	for _, value := range grouped {
+		categoryNotes = append(categoryNotes, *value)
+	}
+
+	return categoryNotes
 }

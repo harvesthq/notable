@@ -22,7 +22,7 @@ type CategoryNotes struct {
 func (categoryNotes *CategoryNotes) Title() string {
 	count := len(categoryNotes.Notes)
 	announcements := pluralize(count, "Announcement")
-	return fmt.Sprintf("#%s &mdash; %d %s", categoryNotes.Name, count, announcements)
+	return fmt.Sprintf("#%s &mdash; %s", categoryNotes.Name, announcements)
 }
 
 func Email() string {

@@ -5,16 +5,16 @@
     <title>New Team Notables</title>
   </head>
 
-  <body>
+  <body style="margin: 0;padding: 0;background-color: #fff;color: #444;font-family: Helvetica,Arial,sans-serif;font-size: 15px;line-height: 150%;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;min-width: 100% !important;width: 100% !important;">
     <center>
-      <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable" style="margin: auto;padding: 0;width: 600px;background-color: #fff;color: #444;font-family: Helvetica,Arial,sans-serif;font-size: 15px;line-height: 150%;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;border-collapse: separate !important;">
         <tr>
           <td align="left" valign="top" id="bodyCell">
-            <table align="left" border="0" cellpadding="0" cellspacing="0" id="templateContainer">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="margin: 0;padding: 0;width: 100%;border-collapse: separate !important;">
 
               <tr>
                 <td align="left" valign="top">
-                  <h1>Team Notables for {{.Today}}</h1>
+                  <h1 style="color: #333;display: block;font-family: Helvetica,Arial,sans-serif;font-size: 24px;font-weight: bold;line-height: 125%;margin: 1em 0 0 0;padding: 0;">Team Notables for {{.Today}}</h1>
                 </td>
               </tr>
 
@@ -22,21 +22,21 @@
 
                 <tr>
                   <td align="left" valign="top" class="headerContent">
-                    <div>{{.Title}}</div>
+                    <div style="background: #74c4a1;border-radius: 4px;color: #fff;font-weight: bold;margin-top: 2em;padding: 10px 15px 10px 15px;">{{.Title}}</div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <table border="0" cellspacing="0" cellpadding="0" class="bodyContent">
+                    <table border="0" cellspacing="0" cellpadding="0" class="bodyContent" style="margin: 0;padding: 0;width: 100%;border-collapse: separate !important;">
                     {{range .Notes}}
                       <tr>
-                        <td align="left" valign="top" width="40">
-                          <img src="{{.AvatarURL}}" height="32" width="32"/>
+                        <td align="left" valign="top" width="40" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
+                          <img src="{{.AvatarURL}}" height="32" width="32" style="border: 0;border-radius: 3px;outline: none;">
                         </td>
-                        <td align="left" valign="top" width="120">
+                        <td align="left" valign="top" width="120" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
                           <strong>{{.Author}}</strong>
                         </td>
-                        <td align="left" valign="top">
+                        <td align="left" valign="top" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
                           {{.Text}}
                         </td>
                       </tr>
@@ -52,72 +52,4 @@
         </tr>
       </table>
     </center>
-
-    <style type="text/css">
-      body{
-        margin:0;
-        min-width:100% !important;
-        padding:0;
-        width:100% !important;
-      }
-      #bodyTable{
-        margin:auto;
-        padding:0;
-        width:600px;
-      }
-      #bodyTable table{
-        width:100%;
-      }
-      body, #bodyTable{
-        background-color:#fff;
-        color:#444;
-        font-family:Helvetica,Arial,sans-serif;
-        font-size:15px;
-        line-height:150%;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      table{
-        border-collapse:separate !important;
-        margin:0;
-        padding:0;
-      }
-      h1{
-        color:#333;
-        display:block;
-        font-family:Helvetica,Arial,sans-serif;
-        font-size:24px;
-        font-weight:bold;
-        line-height:125%;
-        margin:1em 0 0 0;
-        padding:0;
-      }
-      .headerContent div{
-        background:#74c4a1;
-        border-radius:4px;
-        color:#fff;
-        font-weight:bold;
-        margin-top:2em;
-        padding:10px 15px 10px 15px;
-      }
-      .bodyContent td{
-        border-bottom:1px solid #ddd;
-        padding:1em 0 1em 0;
-      }
-      .bodyContent img{
-        border:0;
-        border-radius:3px;
-        outline:none;
-      }
-      @media only screen and (max-width: 600px) /*and (max-device-width: 600px)*/{
-        body{
-          -webkit-text-size-adjust:none !important;
-          -ms-text-size-adjust:none !important;
-        }
-        #bodyTable{
-          width:95% !important;
-        }
-      }
-    </style>
   </body>
-</html>

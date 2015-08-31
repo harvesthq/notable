@@ -31,10 +31,10 @@
                     {{range .Notes}}
                       <tr>
                         <td align="left" valign="top" width="40" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
-                          <img src="https://trello-avatars.s3.amazonaws.com/f19757dadb591b1f346efd8be20f1247/30.png" height="32" width="32" style="border: 0;border-radius: 3px;display: block;">
+                          <img src="{{.AvatarURL}}" height="32" width="32" style="border: 0;border-radius: 3px;display: block;">
                         </td>
                         <td align="left" valign="top" width="100" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
-                          <strong>Jason</strong>
+                          <strong>{{.AbbreviatedAuthor}}</strong>
                         </td>
                         <td align="left" valign="top" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
                           {{.Text}}

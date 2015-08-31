@@ -5,12 +5,12 @@
     <title>Team Notables for {{.Today}}</title>
   </head>
 
-  <body style="margin: 0;padding: 0;background-color: #fff;color: #444;font-family: Helvetica,Arial,sans-serif;font-size: 15px;line-height: 150%;min-width: 100% !important;width: 100% !important;">
+  <body style="background-color: #fff;color: #444;font-family: Helvetica,Arial,sans-serif;font-size: 15px;line-height: 150%;margin: 0;min-width: 100% !important;padding: 0;width: 100% !important;">
     <center>
-      <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable" style="margin: auto;padding: 0 10px 0 10px ;max-width: 620px;width: auto;background-color: #fff;color: #444;font-family: Helvetica,Arial,sans-serif;font-size: 15px;line-height: 150%;border-collapse: separate !important;">
+      <table align="center" border="0" cellpadding="0" cellspacing="0" id="bodyTable" style="background-color: #fff;border-collapse: separate !important;color: #444;font-family: Helvetica,Arial,sans-serif;font-size: 15px;line-height: 150%;margin: auto;max-width: 620px;padding: 0 10px 0 10px;width: auto;">
         <tr>
           <td align="left" valign="top" id="bodyCell">
-            <table align="left" border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="margin: 0;padding: 0;width: 100%;border-collapse: separate !important;">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="border-collapse: separate !important;margin: 0 0 2em 0;padding: 0;width: 100%;">
 
               <tr>
                 <td align="left" valign="top">
@@ -31,10 +31,10 @@
                     {{range .Notes}}
                       <tr>
                         <td align="left" valign="top" width="40" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
-                          <img src="{{.AvatarURL}}" height="32" width="32" style="border: 0;border-radius: 3px;outline: none;">
+                          <img src="https://trello-avatars.s3.amazonaws.com/f19757dadb591b1f346efd8be20f1247/30.png" height="32" width="32" style="border: 0;border-radius: 3px;display: block;">
                         </td>
                         <td align="left" valign="top" width="100" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
-                          <strong>{{.AbbreviatedAuthor}}</strong>
+                          <strong>Jason</strong>
                         </td>
                         <td align="left" valign="top" style="border-bottom: 1px solid #ddd;padding: 1em 0 1em 0;">
                           {{.Text}}

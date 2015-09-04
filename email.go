@@ -5,6 +5,7 @@ import (
 	"fmt"
 	mandrill "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/keighl/mandrill"
 	"log"
+	"regexp"
 	"strings"
 	"text/template"
 	"time"
@@ -56,7 +57,8 @@ func Email() string {
 	err = notesTemplate.Execute(&html, variables)
 	check(err)
 
-	return html.String()
+	autolinkRegexp := regexp.MustCompile(`(\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))))`)
+	return autolinkRegexp.ReplaceAllString(html.String(), "<a href=\"$1\">$1</a>")
 }
 
 func SendEmail(apiKey string) {

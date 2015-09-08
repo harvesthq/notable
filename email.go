@@ -57,8 +57,8 @@ func Email() string {
 	err = notesTemplate.Execute(&html, variables)
 	check(err)
 
-	autolinkRegexp := regexp.MustCompile(`(\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))))`)
-	return autolinkRegexp.ReplaceAllString(html.String(), "<a href=\"$1\">$1</a>")
+	autolinkRegexp := regexp.MustCompile(`([^"])(\b([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))`)
+	return autolinkRegexp.ReplaceAllString(html.String(), "$1<a href=\"$2\">$2</a>")
 }
 
 func SendEmail(apiKey string) {

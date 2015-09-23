@@ -52,7 +52,7 @@ func Email() string {
 	notesTemplate, err := template.ParseFiles("template.html")
 	check(err)
 
-	today := time.Now().Format("Monday January 2, 2006")
+	today := time.Now().Add(-8 * time.Hour).Format("Monday January 2, 2006")
 	variables := Variables{today, notesByCategory()}
 	err = notesTemplate.Execute(&html, variables)
 	check(err)

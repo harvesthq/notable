@@ -6,7 +6,6 @@ import (
 	mandrill "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/keighl/mandrill"
 	"log"
 	"regexp"
-	"strings"
 	"text/template"
 	"time"
 )
@@ -26,24 +25,6 @@ func (categoryNotes *CategoryNotes) Title() string {
 	announcements := pluralize(count, "Announcement")
 
 	return fmt.Sprintf("#%s &mdash; %s", categoryNotes.Name, announcements)
-}
-
-func (note *Note) AbbreviatedAuthor() string {
-	nameParts := strings.Fields(note.Author)
-
-	if len(nameParts) > 0 {
-		firstName := nameParts[0]
-		lastName := nameParts[len(nameParts)-1]
-
-		lastNameInitials := make([]string, 0)
-		for _, name := range strings.Split(lastName, "-") {
-			lastNameInitials = append(lastNameInitials, fmt.Sprintf("%s.", string(name[0])))
-		}
-
-		return fmt.Sprintf("%s %s", firstName, strings.Join(lastNameInitials, "-"))
-	} else {
-		return note.Author
-	}
 }
 
 func Email() string {

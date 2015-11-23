@@ -5,15 +5,15 @@
   "env": {
     "SLACK_TOKEN": {
       "description": "This token will be generated for you when you add the Slash Command in your Slack account",
-      "generator": "secret"
+      "value": "SLACK TOKEN GOES HERE"
     },
     "SLACK_API_TOKEN": {
       "description": "A Slack API token for your account",
-      "generator": "secret"
+      "value": "SLACK API TOKEN GOES HERE"
     },
     "MANDRILL_API_KEY": {
       "description": "A Mandrill API key, used to send out the daily digest emails",
-      "generator": "secret"
+      "value": "MANDRILL API KEY GOES HERE"
     },
     "TO_EMAIL": {
       "description": "The email address you want the digests sent to",

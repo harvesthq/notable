@@ -8,7 +8,7 @@ A simple Slack interface to disseminate small but important bits of information 
 > /notable Chad found Cade's coat!
 # Got it!
 
-> /status The soup, the soup. The soup! #big
+> /notable The soup, the soup. The soup! #big
 # Got it!
 ```
 

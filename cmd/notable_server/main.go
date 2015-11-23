@@ -42,14 +42,22 @@ func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request)
 }
 
 func clearHandler(responseWriter http.ResponseWriter, request *http.Request) {
-	if request.Method == "POST" {
+	request.ParseForm()
+	token := request.Form.Get("token")
+
+	if validToken(token) && request.Method == "POST" {
 		notable.Reset()
 	}
 }
 
 func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
-	responseWriter.Header().Set("Content-Type", "text/html")
-	responseWriter.Write([]byte(notable.Email()))
+	request.ParseForm()
+	token := request.Form.Get("token")
+
+	if validToken(token) {
+		responseWriter.Header().Set("Content-Type", "text/html")
+		responseWriter.Write([]byte(notable.Email()))
+	}
 }
 
 func recordNote(form url.Values) {

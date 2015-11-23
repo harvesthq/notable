@@ -5,6 +5,7 @@ import (
 	"fmt"
 	mandrill "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/keighl/mandrill"
 	"log"
+	"os"
 	"regexp"
 	"text/template"
 	"time"

@@ -10,9 +10,6 @@ import (
 	"os"
 )
 
-const webHookToken = "13XIbBjtLeimhPIY36DWZvdR"
-const slashCommandToken = "jINvK9gvlwQafaCR3yWlksRW"
-
 type OKResponse struct {
 	Text string `json:"text"`
 }
@@ -26,17 +23,11 @@ func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request)
 	token := request.Form.Get("token")
 
 	if validToken(token) {
-		viaSlashCommand := token == slashCommandToken
 		var err error
 
 		if request.Method == "POST" {
-			recordNote(request.Form, viaSlashCommand)
-
-			if viaSlashCommand {
-				responseWriter.Write([]byte("Got it!"))
-			} else {
-				err = respondWithJSON(responseWriter, OKResponse{"Got it!"})
-			}
+			recordNote(request.Form)
+			responseWriter.Write([]byte("Got it!"))
 		} else {
 			err = respondWithJSON(responseWriter, SummaryResponse{notable.Notes()})
 		}
@@ -61,22 +52,21 @@ func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	responseWriter.Write([]byte(notable.Email()))
 }
 
-func recordNote(form url.Values, viaSlashCommand bool) {
+func recordNote(form url.Values) {
 	user_id := form.Get("user_id")
 	category := form.Get("trigger_word")
 	text := form.Get("text")
-	channel := form.Get("channel_name")
 	slackToken := os.Getenv("SLACK_API_TOKEN")
 
-	if viaSlashCommand {
-		channel = ""
-	}
+	notable.Record(user_id, category, text, slackToken)
+}
 
-	notable.Record(user_id, category, text, channel, slackToken)
+func slashCommandToken() string {
+	return os.Getenv("SLACK_TOKEN")
 }
 
 func validToken(token string) bool {
-	return token == webHookToken || token == slashCommandToken
+	return token == slashCommandToken()
 }
 
 func respondWithJSON(responseWriter http.ResponseWriter, response interface{}) error {
@@ -101,5 +91,6 @@ func main() {
 	http.HandleFunc("/email", emailHandler)
 	http.HandleFunc("/clear", clearHandler)
 	http.HandleFunc("/", getAndSetHandler)
+
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

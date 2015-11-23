@@ -10,7 +10,7 @@ import (
 
 var targetRoom string = "general"
 
-func Record(authorID string, category string, text string, channel string, slackToken string) {
+func Record(authorID string, category string, text string, slackToken string) {
 	var authorName, avatarURL string
 
 	api := slack.New(slackToken)
@@ -30,10 +30,7 @@ func Record(authorID string, category string, text string, channel string, slack
 	note := Note{authorName, avatarURL, category, text}
 
 	AddNote(note)
-
-	if channel != targetRoom {
-		notifyRoom(api, note)
-	}
+	notifyRoom(api, note)
 }
 
 func effectiveTextAndCategory(text string, category string) (string, string) {

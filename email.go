@@ -47,9 +47,9 @@ func SendEmail(apiKey string) {
 	subject := pluralize(len(Notes()), "Notable Announcement")
 
 	message := &mandrill.Message{}
-	message.AddRecipient("harvest.team@getharvest.com", "Harvest Team", "to")
-	message.FromEmail = "notable@getharvest.com"
-	message.FromName = "Harvest Notables"
+	message.AddRecipient(os.Getenv("TO_EMAIL"), os.Getenv("TO_NAME"), "to")
+	message.FromEmail = os.Getenv("FROM_EMAIL")
+	message.FromName = os.Getenv("FROM_NAME")
 	message.Subject = subject
 	message.HTML = Email()
 

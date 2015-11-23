@@ -30,7 +30,3 @@ env PORT=8080 SLACK_API_TOKEN=... $GOPATH/bin/notable_server
 ```
 
 There's also the `send_digest` binary that's used by the Heroku scheduler to send out and clear any notes nightly.
-
-## Deployment
-
-Currently deployed on heroku as `harvest-notable`. All the usual Heroku rules apply.

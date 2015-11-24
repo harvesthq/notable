@@ -29,65 +29,65 @@
       <section id="main_content" class="inner">
         <h3><a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How It Works</h3>
 
-<p>Type <strong>/notable</strong> in your chat command line, and it’ll hashtag your message as notable, and post it in the <strong>#General</strong> room. You can do this from any channel in Slack. </p>
+        <p>Type <strong>/notable</strong> in your chat command line, and it’ll hashtag your message as notable, and post it in the <strong>#General</strong> room. You can do this from any channel in Slack. </p>
+      
+        <p>
+          <iframe class="wistia_embed" name="wistia_embed" src="http://fast.wistia.net/embed/iframe/nhrz6fo3p8?canonicalUrl=https%3A%2F%2Fgetharvest.wistia.com%2Fmedias%2Fnhrz6fo3p8&canonicalTitle=Harvest%20Notable%20Announcement%20-%20getharvest" allowtransparency="true" frameborder="0" scrolling="no" width="480" height="270"></iframe>
+        </p>
+      
+      <p>At the end of the day, you’ll also get emailed all the #notable announcements from the day. If you add additional hashtags, like #newfeature, you announcements will get grouped by these hashtags in the email:</p>
+      
+      <p><img src="https://monosnap.com/file/3C8y7lXgRfl24nyZc1AQe7dFjquqWo.png" alt="" width="480"></p>
 
-<p>
-    <iframe class="wistia_embed" name="wistia_embed" src="http://fast.wistia.net/embed/iframe/nhrz6fo3p8?canonicalUrl=https%3A%2F%2Fgetharvest.wistia.com%2Fmedias%2Fnhrz6fo3p8&canonicalTitle=Harvest%20Notable%20Announcement%20-%20getharvest" allowtransparency="true" frameborder="0" scrolling="no" width="480" height="270"></iframe>
-</p>
+      <h3><a id="why-the-harvest-team-uses-notable-announcements-in-slack" class="anchor" href="#why-the-harvest-team-uses-notable-announcements-in-slack" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why the Harvest Team Uses Notable Announcements in Slack</h3>
 
-<p>At the end of the day, you’ll also get emailed all the #notable announcements from the day. If you add additional hashtags, like #newfeature, you announcements will get grouped by these hashtags in the email:</p>
+      <p>Our Slack channels are fairly active here at Harvest. GIFs are flying everywhere, people are asking what’s for lunch at all times of the day, and cryptic, random conversations are taking place in the #emoji-only channel. But, mixed in among all the madness, there are actually valid, important things that everyone in the company should know, like:</p>
 
-<p><img src="https://monosnap.com/file/3C8y7lXgRfl24nyZc1AQe7dFjquqWo.png" alt="" width="480"></p>
+        <ul>
+        <li><em>Hey team, we shipped this new feature today. It’s out to 75% of customers.</em></li>
+        <li><em>We’re hiring! If you know any developers, have them apply here.</em></li>
+        <li><em>Eike and his wife had a baby boy!</em></li>
+        </ul>
 
-<h3>
-<a id="why-the-harvest-team-uses-notable-announcements-in-slack" class="anchor" href="#why-the-harvest-team-uses-notable-announcements-in-slack" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why the Harvest Team Uses Notable Announcements in Slack</h3>
+      <p>Isn’t this what email is for? Not quite. Emails are a bit stuffy and take time to put together. Slack, on the other hand, is much more informal and a quicker way to get a message out. That’s why we’ve chosen it as our channel to make important, company-wide announcements.</p>
 
-<p>Our Slack channels are fairly active here at Harvest. GIFs are flying everywhere, people are asking what’s for lunch at all times of the day, and cryptic, random conversations are taking place in the #emoji-only channel. But, mixed in among all the madness, there are actually valid, important things that everyone in the company should know, like:</p>
+      <h3><a id="installing-notable-announcements-for-your-team" class="anchor" href="#installing-notable-announcements-for-your-team" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Notable Announcements for Your Team</h3>
 
-<ul>
-<li><em>Hey team, we shipped this new feature today. It’s out to 75% of customers.</em></li>
-<li><em>We’re hiring! If you know any developers, have them apply here.</em></li>
-<li><em>Eike and his wife had a baby boy!</em></li>
-</ul>
+        <ul>
+          <li><a href="https://heroku.com/deploy?template=https://github.com/harvesthq/notable/tree/master">Create a new app in Heroku</a>. Don't have an Heroku account? <a href="https://signup.heroku.com/login">Signup for free</a>. </li>
+          <li>Login to your <strong>Slack</strong> account. The new few steps will go through how to pull the two tokens you need from <strong>Slack</strong>.</li>
+          <li>Go to <strong>Integrations</strong> in Slack. Scoll to the bottom of the page and click <strong>View</strong> on <strong>Slash Commands</strong>.</li>
+          <li>Enter <strong>/notable</strong> in the <strong>Choose a Command</strong> field and click <strong>Add Slash Command Integration</strong>.</li>
+          <li>Copy the <strong>Token</strong> provided on the next page and copy it into the <strong>SLACK_TOKEN**</strong> field of the Heroku form. Leave this Slack page open.</li>
+          <li>In a new Slack window, go to the <a href="https://api.slack.com/web">Slack Web API page</a>.</li>
+          <li>Down in the <strong>Authentication</strong> section, click <strong>Create Token</strong> for the Slack account which you would like to use /notable.</li>
+          <li>Copy that token into the <strong>SLACK_API_TOKEN</strong> field in Heroku.</li>
+          <li>MANDRILL_API_KEY</li>
+          <li>Fill in the remaining fields of the Heroku form. Enter the email you want the daily digests to get sent to in the <strong>TO_EMAIL</strong> field. Provide a <strong>TO_NAME</strong> for the email. Similarly enter in the email address you would like the email to be sent from and the name of that–<strong>FROM_EMAIL</strong> and <strong>FROM_NAME</strong>.</li>
+          <li>Click <strong>Deploy for Free</strong>.</li>
+          <li>Take the URL you receive in Heroku and copy this into the <strong>URL</strong> field of your Slack <strong>Slash Commands</strong> page.</li>
+          <li>Fill out of the rest of the <strong>Slash Commands</strong> page fields as you wish and click <strong>Save Integration</strong>.</li>
+        </ul>
 
-<p>Isn’t this what email is for? Not quite. Emails are a bit stuffy and take time to put together. Slack, on the other hand, is much more informal and a quicker way to get a message out. That’s why we’ve chosen it as our channel to make important, company-wide announcements.</p>
+        <h3><a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h3>
 
-<h3>
-<a id="installing-notable-announcements-for-your-team" class="anchor" href="#installing-notable-announcements-for-your-team" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Notable Announcements for Your Team</h3>
-
-<ul>
-  <li><a href="https://heroku.com/deploy?template=https://github.com/harvesthq/notable/tree/master">Create a new app in Heroku</a>. Don't have an Heroku account? <a href="https://signup.heroku.com/login">Signup for free</a>. </li>
-  <li>Login to your <strong>Slack</strong> account. The new few steps will go through how to pull the two tokens you need from <strong>Slack</strong>.</li>
-  <li>Go to <strong>Integrations</strong> in Slack. Scoll to the bottom of the page and click <strong>View</strong> on <strong>Slash Commands</strong>.</li>
-  <li>Enter <strong>/notable</strong> in the <strong>Choose a Command</strong> field and click <strong>Add Slash Command Integration</strong>.</li>
-  <li>Copy the <strong>Token</strong> provided on the next page and copy it into the <strong>SLACK_TOKEN**</strong> field of the Heroku form. Leave this Slack page open.</li>
-  <li>In a new Slack window, go to the <a href="https://api.slack.com/web">Slack Web API page</a>.</li>
-  <li>Down in the <strong>Authentication</strong> section, click <strong>Create Token</strong> for the Slack account which you would like to use /notable.</li>
-  <li>Copy that token into the <strong>SLACK_API_TOKEN</strong> field in Heroku.</li>
-  <li>MANDRILL_API_KEY</li>
-  <li>Fill in the remaining fields of the Heroku form. Enter the email you want the daily digests to get sent to in the <strong>TO_EMAIL</strong> field. Provide a <strong>TO_NAME</strong> for the email. Similarly enter in the email address you would like the email to be sent from and the name of that–<strong>FROM_EMAIL</strong> and <strong>FROM_NAME</strong>.</li>
-  <li>Click <strong>Deploy for Free</strong>.</li>
-  <li>Take the URL you receive in Heroku and copy this into the <strong>URL</strong> field of your Slack <strong>Slash Commands</strong> page.</li>
-  <li>Fill out of the rest of the <strong>Slash Commands</strong> page fields as you wish and click <strong>Save Integration</strong>.</li>
-</ul>
-
-<h3>
-<a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h3>
-
-<p>Have questions or issues? <a href="https://www.getharvest.com/help/contact">Contact support</a> and we’ll help you sort it out.</p>
+        <p>Have questions or issues? <a href="https://www.getharvest.com/help/contact">Contact support</a> and we’ll help you sort it out.</p>
       </section>
-    </div>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+        <h3>
+         <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+          Authors and Contributors
+        </h3>
 <ul>
-<li>
-<a href="https://github.com/jasondew" class="user-mention">@jasondew</a> - Developer</li>
-<li>
-<a href="https://github.com/katierose4" class="user-mention">@katierose4</a> - Product Manager</li>
+  <li>
+    <a href="https://github.com/jasondew" class="user-mention">@jasondew</a> - Developer
+  </li>
+  <li>
+    <a href="https://github.com/katierose4" class="user-mention">@katierose4</a> - Product Manager
+  </li>
 </ul>
-
-  </body>
+    </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
@@ -96,5 +96,5 @@
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
+  </body>
 </html>

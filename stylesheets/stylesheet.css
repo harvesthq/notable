@@ -278,8 +278,8 @@ Full-Width Styles
   right: 10px;
   z-index: 10;
   padding: 10px 50px 10px 10px;
-  color: #000000;
-  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
+  color: #fff;
+  background: url('../images/blacktocat.png') #000000 no-repeat 95% 50%;
   font-weight: 700;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;

@@ -15,12 +15,10 @@
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
+        <a id="forkme_banner" href="https://github.com/harvesthq/notable">View on GitHub</a>
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/harvesthq/notable">View on GitHub</a>
-
           <h1 id="project_title">Notable Announcements for Your Team in Slack</h1>
           <h2 id="project_tagline">A quick way to get important messages to your team</h2>
-
         </header>
     </div>
 
@@ -46,12 +44,13 @@
         <p>Isn’t this what email is for? Not quite. Emails are a bit stuffy and take time to put together. Slack, on the other hand, is much more informal and a quicker way to get a message out. That’s why we’ve chosen it as our channel to make important, company-wide announcements.</p>
 
         <h3><a id="installing-notable-announcements-for-your-team" class="anchor" href="#installing-notable-announcements-for-your-team" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Notable Announcements for Your Team</h3>
-        <p>Before you begin, you’ll need these three apps.</h5>
+        <p>Before you begin, you’ll need these three apps:</h5>
         <ul>
           <li><a href="https://slack.com/create#email">Slack account</a></li>
           <li><a href="https://signup.heroku.com/login">Heroku account (free)</a></li>
           <li><a href="https://www.mandrill.com/">Mandrill account</a></li>
         </ul>
+        <p>Now let’s get started:</p>
         
         <h5>1. Create A New App in Heroku</h5>
         <a href="https://heroku.com/deploy?template=https://github.com/harvesthq/notable/tree/master">
@@ -85,7 +84,7 @@
           <li>Fill in the remaining fields of the Heroku form. Enter the email you want the daily digests to get sent to in the <strong>TO_EMAIL</strong> field. Provide a <strong>TO_NAME</strong> for the email. Similarly, enter in the email address you would like the email to be sent from and the name of that in <strong>FROM_EMAIL</strong> and <strong>FROM_NAME</strong>.</li>
           <li>Click <strong>Deploy for Free</strong> in Heroku.</li>
           <li>To setup the daily emails, click <strong>Heroku Scheduler</strong>. Click <strong>Add new job</strong> and indicate the name of the job, and frequency and time you would like the email to be sent at. </li>
-          <li>Lastly, take the URL of your app from under <strong>Settings</strong> in Heroku and copy this into the <strong>URL</strong> field of your Slack <strong>Slash Commands</strong> page. If your app name is <strong>heroku-notable-test</strong> in Heroku, then your URL will be <code></code>https://heroku-notable-test.herokuapp.com/notes</code>.</li>
+          <li>Lastly, take the URL of your app from under <strong>Settings</strong> in Heroku and copy this into the <strong>URL</strong> field of your Slack <strong>Slash Commands</strong> page. If your app name is <strong>heroku-notable-test</strong> in Heroku, then your URL will be <code>https://heroku-notable-test.herokuapp.com/notes</code>.</li>
             <p><img src="https://monosnap.com/file/lbJX75IwmffXgfuG6qquAsEBGiJ8ol.png" alt="" width="480"></p>
           <li>Fill out the rest of the <strong>Slash Commands</strong> page fields in Slack as you wish and click <strong>Save Integration</strong>.</li>
         </ul>

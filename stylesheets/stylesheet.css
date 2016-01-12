@@ -108,23 +108,9 @@ footer p {
 }
 
 a {
-  text-decoration: none;
   color: #007edf;
   text-shadow: none;
-
-  transition: color 0.5s ease;
-  transition: text-shadow 0.5s ease;
-  -webkit-transition: color 0.5s ease;
-  -webkit-transition: text-shadow 0.5s ease;
-  -moz-transition: color 0.5s ease;
-  -moz-transition: text-shadow 0.5s ease;
-  -o-transition: color 0.5s ease;
-  -o-transition: text-shadow 0.5s ease;
-  -ms-transition: color 0.5s ease;
-  -ms-transition: text-shadow 0.5s ease;
 }
-
-a:hover, a:focus {text-decoration: underline;}
 
 footer a {
   color: #F2F2F2;
@@ -164,9 +150,9 @@ p img {
 
 pre, code {
   width: 100%;
-  color: #222;
-  background-color: #fff;
-
+  background-color: #f4f4f4;
+  border: 1px solid #eee;
+  
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 14px;
 
@@ -178,14 +164,12 @@ pre, code {
 pre {
   width: 100%;
   padding: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
   overflow: auto;
 }
 
 code {
   padding: 3px;
   margin: 0 3px;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
 }
 
 pre code {
@@ -215,6 +199,10 @@ ol {
   list-style-position: inside;
   list-style: decimal;
   padding-left: 40px;
+}
+
+li {
+  margin: 10px 0;
 }
 
 dl dt {
@@ -286,6 +274,7 @@ Full-Width Styles
   color: #fff;
   background: url('../images/blacktocat.png') #000000 no-repeat 95% 50%;
   font-weight: 700;
+  text-decoration: none;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
@@ -418,6 +407,10 @@ Small Device Styles
     min-width: 320px;
     max-width: 480px;
     font-size: 11px;
+  }
+  
+  img, iframe {
+    width: 100% !important;
   }
 
 }

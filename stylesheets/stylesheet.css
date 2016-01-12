@@ -63,6 +63,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color:#222222;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.2;
 }
 
 h1 {
@@ -78,6 +79,11 @@ h2 {
 
 h3 {
   font-size: 24px;
+  margin-top: 100px;
+}
+
+h3:first-child {
+  margin-top: 50px;
 }
 
 h4 {
@@ -86,6 +92,7 @@ h4 {
 
 h5 {
   font-size: 18px;
+  margin-top: 30px;
 }
 
 h6 {
@@ -93,7 +100,7 @@ h6 {
 }
 
 p {
-  margin: 10px 0 15px 0;
+  margin: 20px 0;
 }
 
 footer p {
@@ -153,7 +160,6 @@ p img {
   padding: 0;
   vertical-align: middle;
   text-align: center;
-  border: none;
 }
 
 pre, code {
@@ -196,19 +202,19 @@ blockquote {
 
 
 ul, ol, dl {
-  margin-bottom: 15px
+  margin-bottom: 20px
 }
 
 ul {
   list-style-position: inside;
   list-style: disc;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 
 ol {
   list-style-position: inside;
   list-style: decimal;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 
 dl dt {
@@ -265,7 +271,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 720px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -291,6 +297,8 @@ Full-Width Styles
 
 #header_wrap .inner {
   padding: 50px 10px 30px 10px;
+  max-width: 1000px;
+  text-align: center;
 }
 
 #project_title {
@@ -351,7 +359,7 @@ Full-Width Styles
 }
 
 #main_content {
-  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 #footer_wrap {

@@ -12,7 +12,7 @@
       "value": "SLACK API TOKEN GOES HERE"
     },
     "SLACK_CHANNEL": {
-      "description": "The Slack channel you'd like your notables to appear in",
+      "description": "The Slack channel in which you'd like your notables to appear",
       "value": "SLACK CHANNEL NAME HERE"
     },
     "MANDRILL_API_KEY": {

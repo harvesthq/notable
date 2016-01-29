@@ -11,6 +11,10 @@
       "description": "A Slack API token for your account",
       "value": "SLACK API TOKEN GOES HERE"
     },
+    "SLACK_CHANNEL": {
+      "description": "The Slack channel you'd like your notables to appear in",
+      "value": "SLACK CHANNEL NAME HERE"
+    },
     "MANDRILL_API_KEY": {
       "description": "A Mandrill API key, used to send out the daily digest emails",
       "value": "MANDRILL API KEY GOES HERE"

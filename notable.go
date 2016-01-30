@@ -10,16 +10,12 @@ import (
 )
 
 
-func getTargetRoom() string {
-  var targetRoom string
-
-  if len(os.Getenv("SLACK_CHANNEL")) > 0 {
-    targetRoom = os.Getenv("SLACK_CHANNEL")
-  } else {
-    targetRoom = "general"
+func targetRoom() string {
+  if room := os.Getenv("SLACK_CHANNEL"); len(room) > 0 {
+    return room
   }
 
-  return targetRoom
+  return "general"
 }
 
 func Record(authorID string, category string, text string, slackToken string) {
@@ -71,7 +67,7 @@ func notifyRoom(api *slack.Client, note Note) {
 	avatar := slack.Attachment{Text: note.Text, Color: "good"}
 	heading := fmt.Sprintf("%s Announcement from %s", strings.Title(note.Category), note.Author)
 	params := slack.PostMessageParameters{Username: heading, IconURL: note.AvatarURL, Attachments: append(attachments, avatar)}
-	_, _, err := api.PostMessage(fmt.Sprintf("#%s", getTargetRoom()), "", params)
+	_, _, err := api.PostMessage(fmt.Sprintf("#%s", targetRoom()), "", params)
 	check(err)
 }
 

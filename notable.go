@@ -6,9 +6,17 @@ import (
 	"log"
 	"regexp"
 	"strings"
+	"os"
 )
 
-var targetRoom string = "general"
+
+func targetRoom() string {
+  if room := os.Getenv("SLACK_CHANNEL"); len(room) > 0 {
+    return room
+  }
+
+  return "general"
+}
 
 func Record(authorID string, category string, text string, slackToken string) {
 	var authorName, avatarURL string
@@ -59,7 +67,7 @@ func notifyRoom(api *slack.Client, note Note) {
 	avatar := slack.Attachment{Text: note.Text, Color: "good"}
 	heading := fmt.Sprintf("%s Announcement from %s", strings.Title(note.Category), note.Author)
 	params := slack.PostMessageParameters{Username: heading, IconURL: note.AvatarURL, Attachments: append(attachments, avatar)}
-	_, _, err := api.PostMessage(fmt.Sprintf("#%s", targetRoom), "", params)
+	_, _, err := api.PostMessage(fmt.Sprintf("#%s", targetRoom()), "", params)
 	check(err)
 }
 

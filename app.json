@@ -13,7 +13,7 @@
     },
     "SLACK_CHANNEL": {
       "description": "The Slack channel in which you'd like your notables to appear",
-      "value": "SLACK CHANNEL NAME HERE"
+      "value": "SLACK CHANNEL NAME GOES HERE"
     },
     "MANDRILL_API_KEY": {
       "description": "A Mandrill API key, used to send out the daily digest emails",

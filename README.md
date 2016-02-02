@@ -30,3 +30,20 @@ env PORT=8080 SLACK_API_TOKEN=... $GOPATH/bin/notable_server
 ```
 
 There's also the `send_digest` binary that's used by the Heroku scheduler to send out and clear any notes nightly.
+
+## Configuration
+
+Configuration is done via environment variables, either directly or through Heroku.
+
+* `FROM_NAME` and `FROM_EMAIL` determine who the email is from
+* `TO_NAME` and `TO_EMAIL` determine who the email is sent to
+* `REDIS_URL` is normally provided by Heroku and gives connection details for the Redis instance
+* `SLACK_CHANNEL` determines what room notes are broadcast to, defaults to "general"
+
+## Contributors
+
+* Danny Wen (danny@getharvest.com) &mdash; progenitor
+* Jason Dew (jason@getharvest.com) &mdash; initial code development
+* Katie Rose (katie@getharvest.com) &mdash; lots of documentation and testing
+* Matthew Lettini (lettini@getharvest.com) &mdash; documentation page design
+* Chris Moore (chrism@teamgaslight.com) &mdash; configurable broadcast channel

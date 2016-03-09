@@ -3,8 +3,8 @@ package notable
 import (
 	"encoding/json"
 	"fmt"
-	redis "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/garyburd/redigo/redis"
-	redisurl "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/soveran/redisurl"
+	redis "github.com/garyburd/redigo/redis"
+	redisurl "github.com/soveran/redisurl"
 	"os"
 )
 

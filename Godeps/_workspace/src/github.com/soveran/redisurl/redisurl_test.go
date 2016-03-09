@@ -1,8 +1,8 @@
 package redisurl_test
 
 import (
-	"github.com/harvesthq/notable/Godeps/_workspace/src/github.com/garyburd/redigo/redis"
-	"github.com/harvesthq/notable/Godeps/_workspace/src/github.com/soveran/redisurl"
+	"github.com/garyburd/redigo/redis"
+	"github.com/soveran/redisurl"
 	"testing"
 )
 

@@ -15,10 +15,6 @@
       "description": "The Slack channel in which you'd like your notables to appear",
       "value": "SLACK CHANNEL NAME GOES HERE"
     },
-    "MANDRILL_API_KEY": {
-      "description": "A Mandrill API key, used to send out the daily digest emails",
-      "value": "MANDRILL API KEY GOES HERE"
-    },
     "TO_EMAIL": {
       "description": "The email address you want the digests sent to",
       "value": "your-team@company.com"
@@ -34,6 +30,22 @@
     "FROM_NAME": {
       "description": "The name you want displayed in the digest emails",
       "value": "Announcements"
+    },
+    "SMTP_HOST": {
+      "description": "Your SMTP server's hostname",
+      "value": "localhost"
+    },
+    "SMTP_PORT": {
+      "description": "Your SMTP server's port",
+      "value": "25"
+    },
+    "SMTP_USERNAME": {
+      "description": "SMTP server username",
+      "value": "alice@example.com"
+    },
+    "SMTP_PASSWORD": {
+      "description": "SMTP server password",
+      "value": "super-secret-password"
     }
   },
   "addons": [

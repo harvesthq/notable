@@ -44,11 +44,11 @@
         <p>This email highlights notable, company-wide announcements so that they don’t get lost amid GIFs and emojis in Slack.</p>
 
         <h3><a id="installing-notable-announcements-for-your-team" class="anchor" href="#installing-notable-announcements-for-your-team" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Notable Announcements for Your Team</h3>
-        <p>Before you begin, you’ll need these three apps:</h5>
+        <p>Before you begin, you’ll need:</h5>
         <ul>
-          <li><a href="https://slack.com/create#email">Slack account</a></li>
-          <li><a href="https://signup.heroku.com/login">Heroku account (free)</a></li>
-          <li><a href="https://www.mandrill.com/">Mandrill account</a></li>
+          <li><a href="https://slack.com/create#email">a Slack account</a></li>
+          <li><a href="https://signup.heroku.com/login">a Heroku account (free)</a></li>
+          <li>a way to send email via SMTP</li>
         </ul>
         <p>Now let’s get started:</p>
         
@@ -71,15 +71,7 @@
           <li>Copy that token into the <strong>SLACK_API_TOKEN</strong> field in Heroku.</li>
         </ul>
         
-        <h5>3. Get Your API Keys from Mandrill</h5>
-        <ul>
-          <li>Next, login to your <strong>Mandrill</strong> account and go to <strong>Settings</strong>.</li>
-          <li>Click <strong>New API Key</strong>.</li>
-          <li>Create the API key and copy it into the <strong>MANDRILL_API_KEY</strong> field of Heroku.</li>
-            <p><img src="https://monosnap.com/file/HpkbtqbKZW3KQKG1l0bLWlwt86oAHK.png" alt="" width="480"></p>
-        </ul>
-        
-        <h5>4. Final Steps in Heroku</h5>
+        <h5>3. Final Steps in Heroku</h5>
         <ul>
           <li>Fill in the remaining fields of the Heroku form. Enter the email you want the daily digests to get sent to in the <strong>TO_EMAIL</strong> field. Provide a <strong>TO_NAME</strong> for the email. Similarly, enter in the email address you would like the email to be sent from and the name of that in <strong>FROM_EMAIL</strong> and <strong>FROM_NAME</strong>.</li>
           <li>Click <strong>Deploy for Free</strong> in Heroku.</li>

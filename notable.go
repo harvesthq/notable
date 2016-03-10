@@ -2,20 +2,19 @@ package notable
 
 import (
 	"fmt"
-	slack "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/nlopes/slack"
+	slack "github.com/nlopes/slack"
 	"log"
+	"os"
 	"regexp"
 	"strings"
-	"os"
 )
 
-
 func targetRoom() string {
-  if room := os.Getenv("SLACK_CHANNEL"); len(room) > 0 {
-    return room
-  }
+	if room := os.Getenv("SLACK_CHANNEL"); len(room) > 0 {
+		return room
+	}
 
-  return "general"
+	return "general"
 }
 
 func Record(authorID string, category string, text string, slackToken string) {

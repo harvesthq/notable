@@ -3,9 +3,8 @@ package notable
 import (
 	"bytes"
 	"fmt"
-	mandrill "github.com/harvesthq/notable/Godeps/_workspace/src/github.com/keighl/mandrill"
+	"gopkg.in/gomail.v2"
 	"log"
-	"os"
 	"regexp"
 	"text/template"
 	"time"
@@ -43,21 +42,28 @@ func Email() string {
 	return autolinkRegexp.ReplaceAllString(html.String(), "$1<a href=\"$2\">$2</a>")
 }
 
-func SendEmail(apiKey string) {
-	client := mandrill.ClientWithKey(apiKey)
-	subject := pluralize(len(Notes()), "Notable Announcement")
+func SendEmail(host string, port int, username, password, from_email, from_name, to_email, to_name string) {
+	dialer := gomail.NewDialer(host, port, username, password)
+	message := message(from_email, from_name, to_email, to_name)
 
-	message := &mandrill.Message{}
-	message.AddRecipient(os.Getenv("TO_EMAIL"), os.Getenv("TO_NAME"), "to")
-	message.FromEmail = os.Getenv("FROM_EMAIL")
-	message.FromName = os.Getenv("FROM_NAME")
-	message.Subject = subject
-	message.HTML = Email()
-
-	_, err := client.MessagesSend(message)
-	if err != nil {
-		log.Print(err)
+	if err := dialer.DialAndSend(message); err != nil {
+		log.Fatal(err)
 	}
+}
+
+func message(from_email, from_name, to_email, to_name string) *gomail.Message {
+	message := gomail.NewMessage()
+
+	message.SetAddressHeader("From", from_email, from_name)
+	message.SetAddressHeader("To", to_email, to_name)
+	message.SetHeader("Subject", subject())
+	message.SetBody("text/html", Email())
+
+	return message
+}
+
+func subject() string {
+	return pluralize(len(Notes()), "Notable Announcement")
 }
 
 func notesByCategory() []CategoryNotes {

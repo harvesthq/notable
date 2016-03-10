@@ -2,7 +2,7 @@ package redisurl
 
 import (
 	"fmt"
-	"github.com/harvesthq/notable/Godeps/_workspace/src/github.com/garyburd/redigo/redis"
+	"github.com/garyburd/redigo/redis"
 	"net/url"
 	"os"
 	"strings"

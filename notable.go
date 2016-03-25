@@ -19,7 +19,7 @@ func targetRoom() string {
 }
 
 func Record(authorID string, category string, text string, slackToken string) error {
-	if len(strings.Trim(text, " ")) == 0 {
+	if len(strings.TrimSpace(text)) == 0 {
 		return errors.New("Empty note given.")
 	}
 

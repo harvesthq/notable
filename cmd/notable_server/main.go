@@ -26,8 +26,12 @@ func getAndSetHandler(responseWriter http.ResponseWriter, request *http.Request)
 		var err error
 
 		if request.Method == "POST" {
-			recordNote(request.Form)
-			responseWriter.Write([]byte("Got it!"))
+			recordingErr := recordNote(request.Form)
+			if recordingErr == nil {
+				responseWriter.Write([]byte("Got it!"))
+			} else {
+				responseWriter.Write([]byte("ERROR: " + recordingErr.Error()))
+			}
 		} else {
 			err = respondWithJSON(responseWriter, SummaryResponse{notable.Notes()})
 		}
@@ -60,13 +64,13 @@ func emailHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	}
 }
 
-func recordNote(form url.Values) {
+func recordNote(form url.Values) error {
 	user_id := form.Get("user_id")
 	category := form.Get("trigger_word")
 	text := form.Get("text")
 	slackToken := os.Getenv("SLACK_API_TOKEN")
 
-	notable.Record(user_id, category, text, slackToken)
+	return notable.Record(user_id, category, text, slackToken)
 }
 
 func slashCommandToken() string {

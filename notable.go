@@ -1,6 +1,7 @@
 package notable
 
 import (
+	"errors"
 	"fmt"
 	slack "github.com/nlopes/slack"
 	"log"
@@ -17,7 +18,11 @@ func targetRoom() string {
 	return "general"
 }
 
-func Record(authorID string, category string, text string, slackToken string) {
+func Record(authorID string, category string, text string, slackToken string) error {
+	if len(strings.TrimSpace(text)) == 0 {
+		return errors.New("Empty note given.")
+	}
+
 	var authorName, avatarURL string
 
 	api := slack.New(slackToken)
@@ -37,7 +42,10 @@ func Record(authorID string, category string, text string, slackToken string) {
 	note := Note{authorName, avatarURL, category, text}
 
 	AddNote(note)
-	notifyRoom(api, note)
+	if len(os.Getenv("TESTING")) == 0 {
+		notifyRoom(api, note)
+	}
+	return nil
 }
 
 func effectiveTextAndCategory(text string, category string) (string, string) {
